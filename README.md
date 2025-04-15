@@ -61,7 +61,7 @@ A modern e-commerce platform for buying and selling precious gemstones and jewel
 ## 📁 Project Structure
 
 ```bash
-gemstone-marketplace/
+gemstone-jewelry-material-platform/
 ├── app/                      # Core application package
 │   ├── __init__.py           # Flask app factory and initialization
 │   ├── routes.py             # All application routes (organized as Blueprints)
