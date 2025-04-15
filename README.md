@@ -58,6 +58,27 @@ A modern e-commerce platform for buying and selling precious gemstones and jewel
 - pip package manager
 - MySQL (for production)
 
+### Structure
+gemstone-marketplace/
+├── app/
+│   ├── __init__.py         # Flask app factory
+│   ├── routes.py           # All application routes
+│   ├── models.py           # Database models
+│   ├── forms.py            # WTForms classes
+│   ├── utils/              # Helper modules
+│   │   ├── auth.py         # Auth utilities
+│   │   ├── payments.py     # Payment processors
+│   │   └── web3.py         # Web3 integration
+│   ├── static/
+│   │   ├── css/main.css    # Custom styles
+│   │   ├── js/main.js      # Client-side scripts
+│   │   └── images/         # Static assets
+│   ├── templates/          # Jinja2 templates
+│   └── uploads/            # User uploads
+├── config.py               # Configuration
+├── requirements.txt        # Dependencies
+└── run.py                  # Entry point
+
 ### Installation
 ```bash
 # Clone repository
