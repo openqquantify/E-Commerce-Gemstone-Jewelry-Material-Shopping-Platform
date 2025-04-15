@@ -118,7 +118,7 @@ gemstone-jewelry-material-platform/
 ### Installation
 
 # Clone repository
-git clone https://github.com/yourusername/gemstone-marketplace.git
+git clone https://github.com/openqquantify/Gemstone-Jewelry-Material-Platform.git
 cd gemstone-marketplace
 
 # Create virtual environment
@@ -130,4 +130,4 @@ pip install -r requirements.txt
 
 # Set up environment
 cp .env.example .env
-# Edit .env with your credentials
+
