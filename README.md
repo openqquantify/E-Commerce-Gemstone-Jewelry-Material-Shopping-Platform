@@ -58,26 +58,70 @@ A modern e-commerce platform for buying and selling precious gemstones and jewel
 - pip package manager
 - MySQL (for production)
 
-### Structure
+## 📁 Project Structure
+
+```bash
 gemstone-marketplace/
-├── app/
-│   ├── __init__.py         # Flask app factory
-│   ├── routes.py           # All application routes
-│   ├── models.py           # Database models
-│   ├── forms.py            # WTForms classes
-│   ├── utils/              # Helper modules
-│   │   ├── auth.py         # Auth utilities
-│   │   ├── payments.py     # Payment processors
-│   │   └── web3.py         # Web3 integration
+├── app/                      # Core application package
+│   ├── __init__.py           # Flask app factory and initialization
+│   ├── routes.py             # All application routes (organized as Blueprints)
+│   ├── models.py             # Database models (User, Merchant, Product)
+│   ├── forms.py              # WTForms classes for all forms
+│   ├── utils/                # Utility modules
+│   │   ├── auth.py           # Authentication helpers (password hashing, tokens)
+│   │   ├── payments.py       # Payment processors (Stripe, Web3)
+│   │   ├── file_uploads.py   # Secure file upload handling
+│   │   └── validators.py     # Custom form validators
 │   ├── static/
-│   │   ├── css/main.css    # Custom styles
-│   │   ├── js/main.js      # Client-side scripts
-│   │   └── images/         # Static assets
-│   ├── templates/          # Jinja2 templates
-│   └── uploads/            # User uploads
-├── config.py               # Configuration
-├── requirements.txt        # Dependencies
-└── run.py                  # Entry point
+│   │   ├── css/              # Custom styles (Bootstrap overrides)
+│   │   ├── js/               # Client-side functionality
+│   │   └── images/           # Logos, default product images
+│   ├── templates/            # Jinja2 templates
+│   │   ├── layouts/          # Base templates
+│   │   │   ├── base.html     # Main layout
+│   │   │   └── auth.html     # Auth-specific layout
+│   │   ├── components/       # Reusable UI components
+│   │   ├── auth/             # Authentication flows
+│   │   ├── products/         # Marketplace views
+│   │   └── payments/         # Checkout process
+│   └── uploads/              # User-generated content (gitignored)
+├── tests/                    # Pytest unit and integration tests
+├── migrations/               # Database migration scripts (Alembic)
+├── config.py                 # Flask configuration settings
+├── requirements.txt          # Production dependencies
+├── requirements-dev.txt      # Development dependencies
+├── run.py                    # Application entry point
+└── .env.example              # Environment variables template
+
+
+
+### Key Directories Explained:
+
+1. **`app/`** - Core application package
+   - `routes.py`: Organized using Flask Blueprints (auth, main, products)
+   - `models.py`: Contains all SQLAlchemy models (User, Merchant, Product)
+   - `utils/`: Modular utilities for payments, auth, and file handling
+
+2. **`static/`** - Frontend assets
+   - Designed with mobile-first responsive approach
+   - Vanilla JavaScript (no jQuery dependency)
+
+3. **`templates/`** - Jinja2 templates
+   - Uses template inheritance (`base.html`)
+   - Modular partials for reusable components
+   - Organized by feature (auth, products, payments)
+
+4. **Configuration**
+   - `config.py`: Centralized configuration
+   - `.env.example`: Template for environment variables
+   - `requirements.txt`: Pinned dependencies
+
+### Best Practices:
+- **Separation of Concerns**: Clear division between routes, models, and templates
+- **Modular Design**: Features split into logical components
+- **Security**: Uploads stored outside static folder
+- **Scalability**: Ready for MySQL migration in production
+
 
 ### Installation
 ```bash
