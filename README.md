@@ -62,37 +62,28 @@ A modern e-commerce platform for buying and selling precious gemstones and jewel
 
 ```bash
 gemstone-jewelry-material-platform/
-├── app/                      # Core application package
-│   ├── __init__.py           # Flask app factory and initialization
-│   ├── routes.py             # All application routes (organized as Blueprints)
-│   ├── models.py             # Database models (User, Merchant, Product)
-│   ├── forms.py              # WTForms classes for all forms
-│   ├── utils/                # Utility modules
-│   │   ├── auth.py           # Authentication helpers (password hashing, tokens)
-│   │   ├── payments.py       # Payment processors (Stripe, Web3)
-│   │   ├── file_uploads.py   # Secure file upload handling
-│   │   └── validators.py     # Custom form validators
-│   ├── static/
-│   │   ├── css/              # Custom styles (Bootstrap overrides)
-│   │   ├── js/               # Client-side functionality
-│   │   └── images/           # Logos, default product images
-│   ├── templates/            # Jinja2 templates
-│   │   ├── layouts/          # Base templates
-│   │   │   ├── base.html     # Main layout
-│   │   │   └── auth.html     # Auth-specific layout
-│   │   ├── components/       # Reusable UI components
-│   │   ├── auth/             # Authentication flows
-│   │   ├── products/         # Marketplace views
-│   │   └── payments/         # Checkout process
-│   └── uploads/              # User-generated content (gitignored)
-├── tests/                    # Pytest unit and integration tests
-├── migrations/               # Database migration scripts (Alembic)
-├── config.py                 # Flask configuration settings
-├── requirements.txt          # Production dependencies
-├── requirements-dev.txt      # Development dependencies
-├── run.py                    # Application entry point
-└── .env.example              # Environment variables template
-
+├── app/                          # Main application directory
+│ ├── static/                     # Static files (CSS, JS, images)
+│ ├── templates/                  # HTML templates
+│ │ ├── base.html                 # Base template
+│ │ ├── dashboard.html            # Dashboard page
+│ │ ├── home.html                 # Home page
+│ │ ├── merchant_profile.html     # Merchant profile page
+│ │ └── search.html               # Search page
+│ ├── uploads/                    # File uploads directory
+│ ├── auth/                       # Authentication module
+│ ├── payments/                   # Payments module
+│ ├── products/                   # Products module
+│ ├── init.py                     # Package initialization
+│ ├── config.py                   # Configuration settings
+│ ├── forms.py                    # Form definitions
+│ ├── models.py                   # Database models
+│ ├── routes.py                   # Application routes
+│ ├── utils.py                    # Utility functions
+│ └── run.py                      # Application entry point
+├── requirements.txt              # Python dependencies
+├── LICENSE                       # License file
+└── README.md                     # Project documentation
 
 
 ### Key Directories Explained:
