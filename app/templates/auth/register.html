@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <h2 class="card-title">Create Your Account</h2>
+                        <p class="text-muted">Join our gemstone marketplace community</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('auth.register') }}" id="registration-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-3">
+                            {{ form.username.label(class="form-label") }}
+                            {{ form.username(class="form-control", placeholder="Enter your username") }}
+                            <div class="form-text">4-20 characters, letters and numbers only</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-control", placeholder="Enter your email") }}
+                            <div class="form-text">We'll never share your email</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.password.label(class="form-label") }}
+                            {{ form.password(class="form-control", placeholder="Create a password") }}
+                            <div class="d-flex align-items-center mt-1">
+                                <small class="password-strength weak me-2" id="password-strength">Weak</small>
+                                <small class="text-muted">Minimum 8 characters</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            {{ form.confirm_password.label(class="form-label") }}
+                            {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-user-plus me-2"></i>Register
+                            </button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="mb-0">Already have an account? 
+                                <a href="{{ url_for('auth.login') }}">Sign in here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <small class="text-muted">
+                    By registering, you agree to our 
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a> 
+                    and <a href="#">Privacy Policy</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms of Service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Account Terms</h6>
+                <p>You must be 18 years or older to use this service. You are responsible for maintaining the security of your account.</p>
+                
+                <h6>2. Payment Terms</h6>
+                <p>All transactions are final. We use secure payment processing through Stripe.</p>
+                
+                <h6>3. Product Listings</h6>
+                <p>Merchants are responsible for accurate product descriptions. Misrepresentation may result in account suspension.</p>
+                
+                <h6>4. Privacy</h6>
+                <p>We collect only necessary data to provide our services and process transactions.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Password match validation
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirm_password');
+    
+    function validatePassword() {
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Passwords don't match");
+        } else {
+            confirmPassword.setCustomValidity('');
+        }
+    }
+    
+    password.onchange = validatePassword;
+    confirmPassword.onkeyup = validatePassword;
+    
+    // Username availability check (would be AJAX in production)
+    const usernameField = document.getElementById('username');
+    usernameField.addEventListener('blur', function() {
+        // In production, you would make an AJAX call to check username availability
+        console.log('Would check username availability for:', this.value);
+    });
+});
+</script>
+{% endblock %}
