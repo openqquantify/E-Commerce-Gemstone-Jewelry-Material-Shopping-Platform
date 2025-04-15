@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Merchant Profile</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('main.create_merchant_profile') }}">
+                <div class="mb-3">
+                    <label for="merchant_name" class="form-label">Merchant Name</label>
+                    <input type="text" class="form-control" id="merchant_name" 
+                           name="merchant_name" value="{{ merchant.merchant_name if merchant else '' }}" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" 
+                              rows="3">{{ merchant.description if merchant else '' }}</textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="contact_info" class="form-label">Contact Info</label>
+                    <input type="text" class="form-control" id="contact_info" 
+                           name="contact_info" value="{{ merchant.contact_info if merchant else '' }}">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+                <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

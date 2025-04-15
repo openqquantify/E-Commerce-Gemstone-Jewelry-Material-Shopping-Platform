@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Search Results</h2>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('payments.search') }}">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control form-control-lg" 
+                           placeholder="Search products..." value="{{ query }}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    {% if query %}
+    <h5 class="mb-3">Results for "{{ query }}"</h5>
+    
+    {% if results %}
+    <div class="row">
+        {% for product in results %}
+            {% include 'products/_product_card.html' %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        No matching products found.
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

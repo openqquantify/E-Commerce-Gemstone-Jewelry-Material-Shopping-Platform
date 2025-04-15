@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Dashboard</h2>
+    
+    {% if merchant %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Your Merchant Profile</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Merchant Name:</strong> {{ merchant.merchant_name }}</p>
+            <p><strong>Description:</strong> {{ merchant.description }}</p>
+            <p><strong>Contact Info:</strong> {{ merchant.contact_info }}</p>
+            <a href="{{ url_for('main.create_merchant_profile') }}" class="btn btn-secondary">
+                Edit Profile
+            </a>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        You don't have a merchant profile yet.
+        <a href="{{ url_for('main.create_merchant_profile') }}" class="alert-link">
+            Create one now
+        </a>
+    </div>
+    {% endif %}
+    
+    <div class="card">
+        <div class="card-header">
+            <h4>Quick Actions</h4>
+        </div>
+        <div class="card-body">
+            <div class="d-flex gap-3">
+                <a href="{{ url_for('products.upload_product') }}" class="btn btn-success">
+                    <i class="fas fa-plus me-2"></i>Upload New Product
+                </a>
+                <a href="{{ url_for('products.list_products') }}" class="btn btn-primary">
+                    <i class="fas fa-store me-2"></i>View Marketplace
+                </a>
+                {% if merchant %}
+                <a href="{{ url_for('products.merchant_detail', merchant_id=merchant.id) }}" 
+                   class="btn btn-info">
+                    <i class="fas fa-eye me-2"></i>View Your Store
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

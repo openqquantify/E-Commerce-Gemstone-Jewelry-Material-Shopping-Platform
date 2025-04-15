@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Welcome to Gemstone Marketplace</h1>
+    <p class="lead">Discover exquisite gemstones and jewelry from around the world</p>
+    
+    {% if not current_user.is_authenticated %}
+    <div class="mt-4">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg mx-2">
+            <i class="fas fa-user-plus me-2"></i>Register
+        </a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-lg mx-2">
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+        </a>
+    </div>
+    {% else %}
+    <div class="mt-4">
+        <a href="{{ url_for('products.list_products') }}" class="btn btn-primary btn-lg mx-2">
+            <i class="fas fa-store me-2"></i>Browse Marketplace
+        </a>
+        <a href="{{ url_for('products.upload_product') }}" class="btn btn-success btn-lg mx-2">
+            <i class="fas fa-upload me-2"></i>Sell Your Items
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-gem text-primary fa-3x mb-3"></i>
+                <h3>Premium Quality</h3>
+                <p>Only verified gemstones from trusted merchants</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-shield-alt text-success fa-3x mb-3"></i>
+                <h3>Secure Transactions</h3>
+                <p>Safe payments with buyer protection</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-globe text-info fa-3x mb-3"></i>
+                <h3>Global Network</h3>
+                <p>Connect with merchants worldwide</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
