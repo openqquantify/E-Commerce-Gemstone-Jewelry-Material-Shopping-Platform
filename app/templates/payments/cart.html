@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Your Cart</h2>
+    
+    {% if products %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('products.product_detail', product_id=product.id) }}">
+                                    {{ product.name }}
+                                </a>
+                            </td>
+                            <td>${{ "%.2f"|format(product.price) }}</td>
+                            <td>
+                                <a href="{{ url_for('payments.remove_from_cart', product_id=product.id) }}" 
+                                   class="btn btn-sm btn-danger">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th>${{ "%.2f"|format(total) }}</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <form action="{{ url_for('payments.checkout') }}" method="POST">
+                <button type="submit" class="btn btn-primary btn-lg float-end">
+                    Proceed to Checkout
+                </button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        Your cart is empty. <a href="{{ url_for('products.list_products') }}">Browse products</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
