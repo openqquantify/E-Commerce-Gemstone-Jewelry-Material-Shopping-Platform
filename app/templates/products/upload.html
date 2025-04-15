@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Upload New Product</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" 
+                  action="{{ url_for('products.upload_product') }}">
+                {{ form.hidden_tag() }}
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-control") }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.description.label(class="form-label") }}
+                            {{ form.description(class="form-control", rows=3) }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.price.label(class="form-label") }}
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                {{ form.price(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form.image.label(class="form-label") }}
+                            {{ form.image(class="form-control") }}
+                            <div class="form-text">Allowed formats: JPG, PNG, WEBP</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.material.label(class="form-label") }}
+                            {{ form.material(class="form-control") }}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.weight.label(class="form-label") }}
+                                {{ form.weight(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.carat.label(class="form-label") }}
+                                {{ form.carat(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.color.label(class="form-label") }}
+                        {{ form.color(class="form-control") }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.clarity.label(class="form-label") }}
+                        {{ form.clarity(class="form-control") }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.country_of_origin.label(class="form-label") }}
+                        {{ form.country_of_origin(class="form-control") }}
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload me-2"></i>Upload Product
+                    </button>
+                    <a href="{{ url_for('products.list_products') }}" class="btn btn-secondary">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
