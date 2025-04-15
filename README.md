@@ -84,7 +84,7 @@ gemstone-jewelry-material-platform/
 ├── requirements.txt              # Python dependencies
 ├── LICENSE                       # License file
 └── README.md                     # Project documentation
-
+```
 
 ### Key Directories Explained:
 
@@ -114,8 +114,9 @@ gemstone-jewelry-material-platform/
 - **Scalability**: Ready for MySQL migration in production
 
 
+
 ### Installation
-```bash
+
 # Clone repository
 git clone https://github.com/yourusername/gemstone-marketplace.git
 cd gemstone-marketplace
