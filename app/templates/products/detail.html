@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image_filename %}
+        <img src="{{ url_for('static', filename='uploads/products/' + product.image_filename) }}" 
+             class="img-fluid rounded shadow" alt="{{ product.name }}">
+        {% else %}
+        <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
+             class="img-fluid rounded shadow" alt="Placeholder">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{ product.name }}</h1>
+        <h3 class="text-primary mb-4">${{ "%.2f"|format(product.price) }}</h3>
+        
+        <div class="mb-4">
+            <h4>Description</h4>
+            <p>{{ product.description }}</p>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Details</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Material:</strong> {{ product.material or 'N/A' }}</li>
+                    <li><strong>Weight:</strong> {{ product.weight or 'N/A' }}</li>
+                    <li><strong>Carat:</strong> {{ product.carat or 'N/A' }}</li>
+                    <li><strong>Color:</strong> {{ product.color or 'N/A' }}</li>
+                    <li><strong>Clarity:</strong> {{ product.clarity or 'N/A' }}</li>
+                    <li><strong>Origin:</strong> {{ product.country_of_origin or 'N/A' }}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary btn-lg flex-grow-1">
+                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+            </button>
+            <a href="{{ url_for('products.list_products') }}" class="btn btn-outline-secondary btn-lg">
+                <i class="fas fa-arrow-left me-2"></i>Back
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5">
+    <h4>More from this merchant</h4>
+    <div class="row">
+        {% for product in product.merchant.products[:4] %}
+            {% if product.id != product.id %}
+                {% include 'products/_product_card.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
