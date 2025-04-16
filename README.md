@@ -1,4 +1,4 @@
-# Gemstone-Jewelry-Material-Platform
+# OpenQQuantify Gemstone-Jewelry-Material-Platform
 
 ![Flask](https://img.shields.io/badge/Flask-2.3.2-green)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.0-blueviolet)
