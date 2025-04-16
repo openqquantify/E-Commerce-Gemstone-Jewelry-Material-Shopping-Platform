@@ -1,7 +1,7 @@
-Flask==2.3.2
+Flask==3.0.0
 Flask-SQLAlchemy==3.0.3
-Flask-Login==0.6.2
-Flask-WTF==1.1.1
+Flask-Login==0.6.3
+Flask-WTF==1.2.1
 Pillow==10.0.0
 stripe==5.5.0
 web3==6.4.0

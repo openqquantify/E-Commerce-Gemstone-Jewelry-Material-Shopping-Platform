@@ -4,7 +4,14 @@ from flask_login import LoginManager
 from config import Config
 
 db = SQLAlchemy()
+
+
 login_manager = LoginManager()
+
+# Per the LoginManager docs this function is required
+@login_manager.user_loader
+def load_user(user_id):
+    return models.User.get(user_id)
 
 def create_app(config_class=Config):
     app = Flask(__name__)

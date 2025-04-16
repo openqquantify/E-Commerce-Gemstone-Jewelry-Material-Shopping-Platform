@@ -15,7 +15,10 @@ product_routes = Blueprint('products', __name__)
 payment_routes = Blueprint('payments', __name__)
 
 # Stripe configuration
-stripe.api_key = current_app.config['STRIPE_SECRET_KEY']
+@main_routes.before_app_request
+def set_stripe_key():
+    stripe.api_key = current_app.config['STRIPE_SECRET_KEY']
+
 
 # Main Routes
 @main_routes.route('/')
