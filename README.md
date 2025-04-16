@@ -113,8 +113,6 @@ gemstone-jewelry-material-platform/
 - **Security**: Uploads stored outside static folder
 - **Scalability**: Ready for MySQL migration in production
 
-
-
 ### Installation
 
 # Clone repository
@@ -131,3 +129,25 @@ pip install -r requirements.txt
 # Set up environment
 cp .env.example .env
 
+## Team Leaders
+- Paul Savluc - CEO & Founder
+- Adam Karabin - COO
+- Havard Lillebo - CFO
+
+## Engineers/Developers 
+- Roberta-Andreea Popescu 
+
+## Connect With Us!
+- Paul Savluc, CEO & Founder, LinkedIn: https://www.linkedin.com/in/paul-savluc/
+- OpenQQuantify, LinkedIn: https://www.linkedin.com/company/openqquantify/
+- Tomorrow's AI, LinkedIn: https://www.linkedin.com/company/tomorrows-ai/
+
+### We Are Looking for Team Members, Investors, Sponsors, and Partners! 
+Reach out to us!
+We handle consulting and contracts as well!
+
+### Star, Share, and Follow Us! Support us! 
+We make it possible for people around the world to learn about electronics, embedded systems, robotics, supply chain, and 3d simulations and autonomous systems.
+We do more than that! Find out about all the domains under OpenQQuantify!
+
+![output](https://github.com/user-attachments/assets/09930e68-fbb1-4d7b-8bcf-7890e12744ec)
