@@ -7,6 +7,7 @@ from app.forms import RegistrationForm, LoginForm, ProductForm
 from app.utils import save_image, allowed_file
 import os
 import stripe
+from . import routes
 
 # Initialize Blueprints
 main_routes = Blueprint('main', __name__)
@@ -14,8 +15,7 @@ auth_routes = Blueprint('auth', __name__)
 product_routes = Blueprint('products', __name__)
 payment_routes = Blueprint('payments', __name__)
 
-# Stripe configuration
-stripe.api_key = current_app.config['STRIPE_SECRET_KEY']
+
 
 # Main Routes
 @main_routes.route('/')
@@ -56,6 +56,7 @@ def create_merchant_profile():
         return redirect(url_for('main.dashboard'))
     
     return render_template('merchant_profile.html', merchant=merchant)
+
 
 # Auth Routes
 @auth_routes.route('/register', methods=['GET', 'POST'])
@@ -153,6 +154,12 @@ def upload_product():
         return redirect(url_for('products.list_products'))
     
     return render_template('products/upload.html', form=form)
+
+@product_routes.route('/merchant/<int:merchant_id>')
+@login_required
+def merchant_detail(merchant_id):
+    merchant = Merchant.query.get_or_404(merchant_id)
+    return render_template('merchant_detail.html', merchant=merchant)
 
 # Payment Routes
 @payment_routes.route('/cart')

@@ -1,0 +1,80 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+.python-version
+
+# Environment variables & secrets
+.env
+#.flaskenv
+#instance/
+
+# Flask-related files
+*.log
+*.pot
+*.mo
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook (if used)
+.ipynb_checkpoints/
+
+# Docker
+*.pid
+*.pid.lock
+
+# Misc
+*.db
+*.sqlite3
+*.tgz
+*.tar.gz
+
+# MyPy / Type Checking
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Pylint / Linting
+.pylint.d/
+
+# Gunicorn / uWSGI logs
+gunicorn.log
+*.pid
+
+# dotenv override
+.env.local
+.env.*.local
