@@ -13,7 +13,7 @@ env/
 # Environment variables & secrets
 .env
 #.flaskenv
-#instance/
+instance/*.db
 
 # Flask-related files
 *.log

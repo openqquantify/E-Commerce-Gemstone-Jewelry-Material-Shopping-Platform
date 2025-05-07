@@ -33,9 +33,7 @@ def dashboard():
 def create_merchant_profile():
     merchant = Merchant.query.filter_by(user_id=current_user.id).first()
 
-    form = MerchantForm(obj=merchant)
-
-    if request.method == 'POST' and form.validate_on_submit():
+    if request.method == 'POST':
         m_name = request.form['merchant_name'].strip()
         desc = request.form['description'].strip()
         contact = request.form['contact_info'].strip()
@@ -57,7 +55,7 @@ def create_merchant_profile():
         flash('Merchant profile saved!', 'success')
         return redirect(url_for('main.dashboard'))
 
-    return render_template('merchant_profile.html', merchant=merchant, form=form)
+    return render_template('merchant_profile.html', merchant=merchant)
 
 @main_routes.route("/merchant/<int:merchant_id>", methods=["GET"])
 @login_required
@@ -199,6 +197,22 @@ def remove_from_cart(product_id):
     flash('Item removed from cart', 'info')
     return redirect(url_for('payments.cart'))
 
+
+#for testing purpose only 
+@payment_routes.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    cart = session.get('cart', [])
+    if not cart:
+        flash('Your cart is empty', 'warning')
+        return redirect(url_for('payments.cart'))
+    
+    # Simulate processing payment...
+    flash('Simulated payment succeeded!', 'success')
+    return redirect(url_for('payments.payment_success'))
+
+
+"""
 @payment_routes.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
@@ -231,6 +245,7 @@ def checkout():
     except Exception as e:
         flash(str(e), 'danger')
         return redirect(url_for('payments.cart'))
+"""
 
 @payment_routes.route('/payment-success')
 def payment_success():
