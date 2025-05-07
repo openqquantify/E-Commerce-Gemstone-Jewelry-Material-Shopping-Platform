@@ -27,3 +27,9 @@ class ProductForm(FlaskForm):
     country_of_origin = StringField('Country of Origin')
     image = FileField('Product Image')
     submit = SubmitField('Upload Product')
+
+class MerchantForm(FlaskForm):
+    merchant_name = StringField('Merchant Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    contact_info = StringField('Contact Information')
+    submit = SubmitField('Save Profile')

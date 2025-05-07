@@ -1,20 +1,20 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
+from flask import Blueprint, render_template, redirect, session, url_for, flash, request, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from app.models import db, User, Merchant, Product
-from app.forms import RegistrationForm, LoginForm, ProductForm
+from app.forms import RegistrationForm, LoginForm, ProductForm, MerchantForm
 from app.utils import save_image, allowed_file
-import os
-import stripe
 from . import routes
+import stripe
+import os
+
 
 # Initialize Blueprints
 main_routes = Blueprint('main', __name__)
 auth_routes = Blueprint('auth', __name__)
 product_routes = Blueprint('products', __name__)
 payment_routes = Blueprint('payments', __name__)
-
 
 
 # Main Routes
@@ -32,8 +32,10 @@ def dashboard():
 @login_required
 def create_merchant_profile():
     merchant = Merchant.query.filter_by(user_id=current_user.id).first()
-    
-    if request.method == 'POST':
+
+    form = MerchantForm(obj=merchant)
+
+    if request.method == 'POST' and form.validate_on_submit():
         m_name = request.form['merchant_name'].strip()
         desc = request.form['description'].strip()
         contact = request.form['contact_info'].strip()
@@ -54,8 +56,15 @@ def create_merchant_profile():
         db.session.commit()
         flash('Merchant profile saved!', 'success')
         return redirect(url_for('main.dashboard'))
-    
-    return render_template('merchant_profile.html', merchant=merchant)
+
+    return render_template('merchant_profile.html', merchant=merchant, form=form)
+
+@main_routes.route("/merchant/<int:merchant_id>", methods=["GET"])
+@login_required
+def merchant_detail(merchant_id):
+    merchant = Merchant.query.get_or_404(merchant_id)
+    return render_template("merchant_detail.html", merchant=merchant)
+
 
 
 # Auth Routes
@@ -241,3 +250,4 @@ def search():
         ).all()
     
     return render_template('search.html', results=results, query=query)
+
