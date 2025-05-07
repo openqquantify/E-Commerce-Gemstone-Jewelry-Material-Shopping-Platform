@@ -19,10 +19,11 @@ def create_app(config_class=Config):
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from app.routes import main_routes, auth_routes, product_routes
+    from app.routes import main_routes, auth_routes, product_routes, payment_routes
     app.register_blueprint(main_routes)
     app.register_blueprint(auth_routes)
     app.register_blueprint(product_routes)
+    app.register_blueprint(payment_routes)
 
     with app.app_context():
         from app.models import User, Merchant, Product
